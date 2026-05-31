@@ -95,6 +95,19 @@ h1{
     color:#58a6ff;
 }
 
+#github-link{
+    display: inline-block;
+    margin-top: 5px;
+    text-decoration: none;
+    padding: 4px 1px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+#github-link:hover{
+    text-decoration: underline;
+}
+
 @media(max-width:600px){
     .profile-card{
         flex-direction:column;
