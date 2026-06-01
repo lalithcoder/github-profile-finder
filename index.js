@@ -28,14 +28,18 @@ input1.addEventListener("keypress", (event) => {
 // Fetch data from Github Api .
 
 async function userdata(n) {
-    try{
+    if(n === ""){
+        const name = document.getElementById("username")
+        name.value = "Enter username !"
+    }
+    else{
+        try{
         const response  = await fetch('https://api.github.com/users/'+ n)
         
 
          if(!response.ok){ 
             clearProfile()
             Notfound()
-            console.log("hwle")
             Noloading()
             return ;
             // clearProfile()
@@ -54,10 +58,17 @@ async function userdata(n) {
             url(data)
             console.log("Git Hub Url")
             Noloading()
+            console.log("Noloading")
+            DisplayRepo(data)
     }
     catch(e){
         console.log("error message  "+ e )
     }
+    finally{
+   Noloading()
+    }
+    }
+    
 }
 
 
@@ -184,5 +195,45 @@ function loading(){
 function Noloading(){
     // searchbutton.disabled = false
     searchbutton.innerHTML = "Search"
+
+}
+
+// Displaying Repo
+
+async function DisplayRepo(data){
+    const RepoDisplay = data.repos_url
+    const repository = await fetch(RepoDisplay)
+    console.log(repository)
+    let repoArray = await repository.json()
+    console.log("Number of Repo "+ repoArray.length)
+
+    const parentcontainer = document.getElementById("repo-list")
+
+    parentcontainer.innerHTML = ""
+    
+    if(repoArray.length === 0){
+        const newchild = document.createElement("div")
+
+        newchild.innerHTML =`<strong>No Repository </strong>`
+        newchild.classList.add("repo-item")
+
+        parentcontainer.appendChild(newchild)
+    }
+    else{
+        for(let i = 0;i<Math.min(5, repoArray.length);i++){
+        const newDiv = document.createElement("div")
+
+        newDiv.innerHTML = `<strong>${repoArray[i].name}</strong>
+                            <p>${repoArray[i].description || "No description available"}<p>
+                            <a href="${repoArray[i].html_url}" target="_blank" >View Repo</a>`  
+
+        newDiv.classList.add("repo-item")
+
+        parentcontainer.appendChild(newDiv)
+
+        console.log(repoArray[i].name)
+    }
+        
+    }
 
 }

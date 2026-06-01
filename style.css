@@ -1,120 +1,214 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#0d1117;
-    color:white;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d1117;
+    color: #f0f6fc;
+    min-height: 100vh;
+    padding: 30px;
 }
 
-.container{
-    width:90%;
-    max-width:700px;
+.container {
+    max-width: 900px;
+    margin: auto;
 }
 
-h1{
-    text-align:center;
-    margin-bottom:20px;
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.search-box{
-    display:flex;
-    gap:10px;
-    margin-bottom:25px;
+/* Search Section */
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
 }
 
-.search-box input{
-    flex:1;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
+.search-box input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background: #161b22;
+    color: white;
+    font-size: 16px;
 }
 
-.search-box button{
-    padding:12px 20px;
-    border:none;
-    border-radius:8px;
-    background:#238636;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
+.search-box input:focus {
+    outline: none;
+    border-color: #58a6ff;
 }
 
-.search-box button:hover{
-    background:#2ea043;
+.search-box button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #238636;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-.profile-card{
-    background:#161b22;
-    border-radius:15px;
-    padding:25px;
-    display:flex;
-    gap:25px;
-    align-items:center;
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
+.search-box button:hover {
+    background: #2ea043;
 }
 
-.profile-card img{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    border:4px solid #238636;
+.search-box button:disabled {
+    background: gray;
+    cursor: not-allowed;
 }
 
-.profile-info{
-    flex:1;
+/* Profile Card */
+
+.profile-card {
+    background: #161b22;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-.profile-info h2{
-    margin-bottom:10px;
+.profile-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #238636;
+    object-fit: cover;
 }
 
-.profile-info p{
-    color:#b3b3b3;
-    margin-bottom:20px;
+.profile-info {
+    flex: 1;
 }
 
-.stats{
-    display:flex;
-    gap:30px;
+.profile-info h2 {
+    margin-bottom: 10px;
 }
 
-.stats div{
-    text-align:center;
+.profile-info p {
+    color: #8b949e;
+    margin-bottom: 15px;
 }
 
-.stats h3{
-    color:#58a6ff;
+/* Stats */
+
+.stats {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
 }
 
-#github-link{
+.stat-box {
+    background: #0d1117;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 90px;
+}
+
+.stat-box h3 {
+    color: #58a6ff;
+    margin-bottom: 5px;
+}
+
+.stat-box span {
+    color: #8b949e;
+    font-size: 14px;
+}
+
+/* GitHub Link */
+
+#github-link {
     display: inline-block;
-    margin-top: 5px;
     text-decoration: none;
-    padding: 4px 1px;
-    border-radius: 6px;
-    font-weight: 600;
+    color: white;
+    background: #238636;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    transition: 0.3s;
 }
 
-#github-link:hover{
+#github-link:hover {
+    background: #2ea043;
+}
+
+/* Repository Section */
+
+.repo-container {
+    margin-top: 20px;
+}
+
+.repo-container h2 {
+    margin-bottom: 15px;
+}
+
+#repo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.repo-item {
+    background: #161b22;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 5px solid #58a6ff;
+    transition: 0.3s;
+}
+
+.repo-item:hover {
+    transform: translateY(-3px);
+}
+
+.repo-item strong {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.repo-item p {
+    color: #8b949e;
+    margin-bottom: 10px;
+}
+
+.repo-item a {
+    text-decoration: none;
+    color: #58a6ff;
+    font-weight: bold;
+}
+
+.repo-item a:hover {
     text-decoration: underline;
 }
 
-@media(max-width:600px){
-    .profile-card{
-        flex-direction:column;
-        text-align:center;
+/* Mobile Responsive */
+
+@media (max-width: 700px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .stats{
-        justify-content:center;
+    .stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        width: 100%;
     }
 }
